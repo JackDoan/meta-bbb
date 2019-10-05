@@ -1,0 +1,51 @@
+From 2802b4d0cb1f0f14c89f44254b62a3136797ce4f Mon Sep 17 00:00:00 2001
+From: JackDoan <me@jackdoan.com>
+Date: Sat, 5 Oct 2019 13:53:38 -0500
+Subject: [PATCH 4/4] dts add dcans to sancloud board
+
+---
+ arch/arm/boot/dts/am335x-sancloud-bbe.dts | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe.dts b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
+index 8678e6e35493..132cae2bbf8d 100644
+--- a/arch/arm/boot/dts/am335x-sancloud-bbe.dts
++++ b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
+@@ -86,8 +86,34 @@
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_A10, PIN_INPUT, MUX_MODE7)     /* gpmc_a10.gpio1_26 */
+ 		>;
+ 	};
++  dcan0_pins: dcan0_pins {
++    pinctrl-single,pins = <
++      AM33XX_IOPAD(0x97c, PIN_INPUT_PULLUP | MUX_MODE2)   /* P9.19, ddcan0_rx */
++      AM33XX_IOPAD(0x978, PIN_OUTPUT_PULLUP | MUX_MODE2)  /* P9.20, ddcan0_tx */
++    >;
++  };
++  dcan1_pins: dcan1_pins {
++    pinctrl-single,pins = <
++      AM33XX_IOPAD(0x984, PIN_INPUT_PULLUP | MUX_MODE2)   /* P9.24, ddcan1_rx */
++      AM33XX_IOPAD(0x980, PIN_OUTPUT_PULLUP | MUX_MODE2)  /* P9.26, ddcan1_tx */
++    >;
++  };
++
++};
++
++&dcan0 {
++  status = "okay";
++  pinctrl-names = "default";
++  pinctrl-0 = <&dcan0_pins>;
+ };
+ 
++&dcan1 {
++  status = "okay";
++  pinctrl-names = "default";
++  pinctrl-0 = <&dcan1_pins>;
++};
++
++
+ &mac {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&cpsw_default>;
+-- 
+2.23.0
+
