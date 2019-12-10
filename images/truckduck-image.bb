@@ -8,6 +8,8 @@ inherit core-image
 
 CORE_OS = " \
     openssh openssh-keygen openssh-sftp-server \
+    openssl \
+    openssl-bin \
     psplash \
     term-prompt \
     tzdata \
@@ -54,7 +56,16 @@ DEV_SDK_INSTALL = " \
     make \
     perl-modules \
     pkgconfig \
+    python-pip \
     python-modules \
+    python-pyusb \
+    python3-pyusb \
+    python-can \
+    python3-can \
+    python-cryptography \
+    python-pycrypto python-pycryptodome \
+    python3-cryptography \
+    python3-pycrypto python3-pycryptodome \
     python3 \
     systemd-analyze \
  "
@@ -79,6 +90,7 @@ EXTRA_TOOLS_INSTALL = " \
     i2c-tools \
     iftop \
     htop \
+    grep \
     less \
     picocom \
     procps \
@@ -87,7 +99,7 @@ EXTRA_TOOLS_INSTALL = " \
     tcpdump \
     unzip \
     util-linux \
-    vim-tiny \
+    vim \
     wget \
     zip \
  "
@@ -110,11 +122,13 @@ IMAGE_INSTALL += " \
  "
 
 set_local_timezone() {
-    ln -sf /usr/share/zoneinfo/EST5EDT ${IMAGE_ROOTFS}/etc/localtime
+    ln -sf /usr/share/zoneinfo/CST6CDT ${IMAGE_ROOTFS}/etc/localtime
 }
 
 disable_bootlogd() {
-    echo BOOTLOGD_ENABLE=no > ${IMAGE_ROOTFS}/etc/default/bootlogd
+    #JACK TEMP DISABLED
+    echo
+    #echo BOOTLOGD_ENABLE=no > ${IMAGE_ROOTFS}/etc/default/bootlogd
 }
 
 ROOTFS_POSTPROCESS_COMMAND += " \
