@@ -63,9 +63,9 @@ DEV_SDK_INSTALL = " \
     python-can \
     python3-can \
     python-cryptography \
-    python-pycrypto python-pycryptodome \
+    python-pycrypto \
     python3-cryptography \
-    python3-pycrypto python3-pycryptodome \
+    python3-pycrypto \
     python3 \
     systemd-analyze \
  "
